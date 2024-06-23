@@ -1,0 +1,136 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  creationTimestamp: "2024-06-23T17:05:26Z"
+  generation: 26
+  name: bansira-demo
+  namespace: argocd
+  resourceVersion: "110447"
+  uid: c3a56c0f-24f9-4b69-b32f-4583afef58ec
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      valueFiles:
+      - values.yaml
+    path: nodeapp
+    repoURL: https://github.com/anjaliranotreddy/BANSIRA-DEMO.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+status:
+  controllerNamespace: argocd
+  health:
+    status: Healthy
+  history:
+  - deployStartedAt: "2024-06-23T17:05:27Z"
+    deployedAt: "2024-06-23T17:05:27Z"
+    id: 0
+    initiatedBy:
+      automated: true
+    revision: e8a024691232e4a823d4e9655785d5d1f2629f68
+    source:
+      helm:
+        valueFiles:
+        - values.yaml
+      path: nodeapp
+      repoURL: https://github.com/anjaliranotreddy/BANSIRA-DEMO.git
+      targetRevision: HEAD
+  - deployStartedAt: "2024-06-23T17:18:50Z"
+    deployedAt: "2024-06-23T17:18:50Z"
+    id: 1
+    initiatedBy:
+      username: admin
+    revision: e8a024691232e4a823d4e9655785d5d1f2629f68
+    source:
+      helm:
+        valueFiles:
+        - values.yaml
+      path: nodeapp
+      repoURL: https://github.com/anjaliranotreddy/BANSIRA-DEMO.git
+      targetRevision: HEAD
+  operationState:
+    finishedAt: "2024-06-23T17:18:50Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        username: admin
+      retry: {}
+      sync:
+        revision: e8a024691232e4a823d4e9655785d5d1f2629f68
+        syncOptions:
+        - CreateNamespace=true
+        syncStrategy:
+          hook: {}
+    phase: Succeeded
+    startedAt: "2024-06-23T17:18:50Z"
+    syncResult:
+      resources:
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/my-nodejs-service unchanged
+        name: my-nodejs-service
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/my-nodejs-deployment unchanged
+        name: my-nodejs-deployment
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      revision: e8a024691232e4a823d4e9655785d5d1f2629f68
+      source:
+        helm:
+          valueFiles:
+          - values.yaml
+        path: nodeapp
+        repoURL: https://github.com/anjaliranotreddy/BANSIRA-DEMO.git
+        targetRevision: HEAD
+  reconciledAt: "2024-06-23T17:37:29Z"
+  resources:
+  - health:
+      status: Healthy
+    kind: Service
+    name: my-nodejs-service
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: my-nodejs-deployment
+    namespace: argocd
+    status: Synced
+    version: v1
+  sourceType: Helm
+  summary:
+    images:
+    - anjaliranotreddy/docker1:latest
+  sync:
+    comparedTo:
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      source:
+        helm:
+          valueFiles:
+          - values.yaml
+        path: nodeapp
+        repoURL: https://github.com/anjaliranotreddy/BANSIRA-DEMO.git
+        targetRevision: HEAD
+    revision: e8a024691232e4a823d4e9655785d5d1f2629f68
+    status: Synced
