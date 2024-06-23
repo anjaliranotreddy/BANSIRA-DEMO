@@ -1,0 +1,19 @@
+replicaCount: 3
+deployment:
+  name: my-nodejs-deployment  
+
+labels:
+  app: my-nodejs-app
+
+image:
+  name: nodejs-app 
+  repository: anjaliranotreddy/docker1
+  tag: latest
+
+service: 
+  name: my-nodejs-service
+  type: LoadBalancer
+  targetPort: 3000
+  port: 3000
+  containerPort: 3000
+  
